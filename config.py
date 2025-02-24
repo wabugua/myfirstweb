@@ -1,18 +1,36 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-class Config:
-    # 飞书应用配置
-    FEISHU_APP_ID = os.getenv('FEISHU_APP_ID', 'cli_a732c149713b101c')
-    FEISHU_APP_SECRET = os.getenv('FEISHU_APP_SECRET', 'Wrgg6XTbwjrVygLqVbuqb5GVtEopsPKM')
-    
-    # 多维表格配置
-    BASE_ID = os.getenv('BASE_ID', 'OF5PblFxva7Ip8sNTrJcnEjonQg')
-    TABLE_ID = os.getenv('TABLE_ID', 'tblOTL3T7JOCUpxV')
-    
-    # Flask应用配置
-    SECRET_KEY = os.urandom(24)
-    CACHE_TYPE = 'simple'
-    CACHE_DEFAULT_TIMEOUT = 300
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}个人博客{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">张二毛</a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active">首页</a>
+                <a href="/about">关于</a>
+                <a href="/friends">友链</a>
+                {% if session.get('logged_in') %}
+                    <a href="{{ url_for('logout') }}">注销</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">登录</a>
+                {% endif %}
+            </div>
+            <div class="nav-search">
+                <input type="text" placeholder="请输入关键字...">
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

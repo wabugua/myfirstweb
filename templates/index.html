@@ -1,25 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}个人博客 - 首页{% endblock %}
+{% block title %}首页 - 我的博客{% endblock %}
 
 {% block content %}
-<div class="article-list">
-    {% for article in articles %}
-    <article class="article-card">
-        <div class="article-category">{{ article.category }}</div>
-        <a href="/article/{{ article.id }}" target="_blank" class="article-title">{{ article.title }}</a>
-        {% if article.quote %}
-        <div class="article-quote">{{ article.quote }}</div>
-        {% endif %}
-        {% if article.summary %}
-        <div class="article-summary">{{ article.summary }}</div>
-        {% endif %}
-        <div class="article-meta">
-            <span class="meta-item views">{{ article.views }} 阅读</span>
-            <span class="meta-item category">{{ article.category }} 分类</span>
-            <span class="meta-item comments">{{ article.comments }} 评论</span>
-        </div>
-    </article>
-    {% endfor %}
+<div class="posts">
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post">
+                <div class="post-header">
+                    <h2 class="post-title">{{ post.fields.标题 }}</h2>
+                    {% if post.fields.金句 %}
+                        <div class="post-quote">
+                            <h3 class="section-title">金句：</h3>
+                            <strong>{{ post.fields.金句[0].text }}</strong>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="post-content">
+                    <h3 class="section-title">摘要：</h3>
+                    <p class="post-summary">{{ post.fields.摘要[0].text[:100] }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p class="no-posts">暂无文章</p>
+    {% endif %}
 </div>
 {% endblock %}
