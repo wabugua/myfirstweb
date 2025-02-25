@@ -114,5 +114,25 @@ def detail(post_id):
         return "文章不存在", 404
     return render_template('detail.html', post=post)
 
+@app.route('/categories')
+def categories():
+    posts = get_bitable_records()
+    # 根据文章标签或分类字段组织分类数据
+    categories_dict = {}
+    for post in posts:
+        category_name = post.fields.get('分类', '未分类')
+        if category_name not in categories_dict:
+            categories_dict[category_name] = {
+                'name': category_name,
+                'posts': []
+            }
+        categories_dict[category_name]['posts'].append(post)
+    
+    return render_template('categories.html', categories=list(categories_dict.values()))
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

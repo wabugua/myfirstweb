@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}文章分类 - 我的博客{% endblock %}
+
+{% block content %}
+<div class="categories">
+    <h1 class="page-title">文章分类</h1>
+    {% if categories %}
+        {% for category in categories %}
+            <div class="category-card">
+                <h2 class="category-title">{{ category.name }}</h2>
+                <p class="post-count">{{ category.posts|length }} 篇文章</p>
+                <ul class="category-posts">
+                    {% for post in category.posts %}
+                        <li>
+                            <a href="{{ url_for('detail', post_id=post.record_id) }}">{{ post.fields.标题 }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-categories">暂无分类</p>
+    {% endif %}
+</div>
+{% endblock %}
