@@ -11,14 +11,13 @@
                     <h2 class="post-title">{{ post.fields.标题 }}</h2>
                     {% if post.fields.金句 %}
                         <div class="post-quote">
-                            <h3 class="section-title">金句：</h3>
                             <strong>{{ post.fields.金句[0].text }}</strong>
                         </div>
                     {% endif %}
                 </div>
                 <div class="post-content">
-                    <h3 class="section-title">摘要：</h3>
                     <p class="post-summary">{{ post.fields.摘要[0].text[:100] }}</p>
+                    <a href="{{ url_for('detail', post_id=post.record_id) }}" class="read-more">阅读全文</a>
                 </div>
             </article>
         {% endfor %}

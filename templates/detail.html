@@ -1,32 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}个人博客 - 首页{% endblock %}
+{% block title %}{{ post.fields.标题 }} - 我的博客{% endblock %}
 
 {% block content %}
-<div class="article-list">
-    {% for article in articles %}
-    <article class="article-card">
-        <div class="article-image">
-            {% if article.image %}
-            <img src="{{ article.image }}" alt="{{ article.title }}">
-            {% endif %}
-        </div>
-        <div class="article-content">
-            <div class="article-category">{{ article.category }}</div>
-            <a href="/article/{{ article.id }}" target="_blank" class="article-title">{{ article.title }}</a>
-            {% if article.quote %}
-            <div class="article-quote">{{ article.quote }}</div>
-            {% endif %}
-            {% if article.summary %}
-            <div class="article-summary">{{ article.summary }}</div>
-            {% endif %}
-            <div class="article-meta">
-                <span class="meta-item views">{{ article.views }} 阅读</span>
-                <span class="meta-item category">{{ article.category }} 分类</span>
-                <span class="meta-item comments">{{ article.comments }} 评论</span>
-            </div>
-        </div>
-    </article>
-    {% endfor %}
-</div>
+<article class="post-detail">
+    <h1 class="post-title">{{ post.fields.标题 }}</h1>
+    {% if post.fields.金句 %}
+    <div class="post-quote">
+        <strong>{{ post.fields.金句[0].text }}</strong>
+    </div>
+    {% endif %}
+    <div class="post-content">
+        {{ post.fields.全文内容[0].text }}
+    </div>
+</article>
 {% endblock %}

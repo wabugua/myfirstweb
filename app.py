@@ -75,11 +75,44 @@ def get_bitable_records():
         logger.error(f"获取多维表格数据时发生错误：{str(e)}")
         return []
 
+def get_bitable_record(record_id):
+    token = get_tenant_access_token()
+    if not token:
+        logger.error("无法获取tenant_access_token，返回None")
+        return None
+    
+    url = FEISHU_HOST + BITABLE_URI.format(BASE_ID, TABLE_ID) + f"/{record_id}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    try:
+        logger.info(f"正在获取文章数据，record_id: {record_id}")
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            item = data.get("data", {})
+            logger.info(f"成功获取文章数据：{item}")
+            return item
+        else:
+            logger.error(f"获取文章数据失败，状态码：{response.status_code}，响应：{response.text}")
+            return None
+    except Exception as e:
+        logger.error(f"获取文章数据时发生错误：{str(e)}")
+        return None
+
 @app.route('/')
 def index():
     posts = get_bitable_records()
     logger.info(f"获取到的数据结构：{posts}")
     return render_template('index.html', posts=posts)
+
+@app.route('/detail/<post_id>')
+def detail(post_id):
+    post = get_bitable_record(post_id)
+    if post is None:
+        return "文章不存在", 404
+    return render_template('detail.html', post=post)
 
 if __name__ == '__main__':
     app.run(debug=True)
