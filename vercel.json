@@ -13,7 +13,11 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "."
+    "PYTHONPATH": ".",
+    "APP_ID": "cli_a732c149713b101c",
+    "APP_SECRET": "Wrgg6XTbwjrVygLqVbuqb5GVtEopsPKM",
+    "BASE_ID": "OF5PblFxva7Ip8sNTrJcnEjonQg",
+    "TABLE_ID": "tblOTL3T7JOCUpxV"
   },
   "outputDirectory": "static"
 }

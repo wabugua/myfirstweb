@@ -1,17 +1,19 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}{{ post.fields.标题 }} - 我的博客{% endblock %}
+{% block title %}{{ post.fields.标题 }} - 贰毛志{% endblock %}
 
 {% block content %}
-<article class="post-detail">
-    <h1 class="post-title">{{ post.fields.标题 }}</h1>
-    {% if post.fields.金句 %}
-    <div class="post-quote">
-        <strong>{{ post.fields.金句[0].text }}</strong>
-    </div>
-    {% endif %}
-    <div class="post-content">
-        {{ post.fields.全文内容[0].text }}
-    </div>
-</article>
+<div class="post-detail">
+    <article class="post">
+        <div class="post-header">
+            <h1 class="post-title">{{ post.fields.标题 }}</h1>
+            <div class="post-meta">
+                <span class="post-date">{{ post.fields.发布时间|datetime }}</span>
+            </div>
+        </div>
+        <div class="post-content">
+            {{ post.fields.正文|smart_paragraphs|safe }}
+        </div>
+    </article>
+</div>
 {% endblock %}

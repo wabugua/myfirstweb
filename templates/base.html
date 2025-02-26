@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}我的博客{% endblock %}</title>
+    <title>{% block title %}贰毛志{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="{{ url_for('index') }}">我的博客</a>
+                <a href="{{ url_for('index') }}">贰毛志</a>
             </div>
             <div class="nav-links">
                 <a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">首页</a>
-                <a href="{{ url_for('categories') }}" class="{% if request.endpoint == 'categories' %}active{% endif %}">文章分类</a>
-                <a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">关于我</a>
+                <a href="https://r1txjph3ok7.feishu.cn/wiki/Xe1ewHxCuiGRqkk4r9HcOwhtnKg?from=from_copylink" class="{% if request.endpoint == 'works' %}active{% endif %}">作品</a>
+                <a href="https://r1txjph3ok7.feishu.cn/wiki/Yax8wUZQHiBhMokM3ibcDHqLnTe?from=from_copylink" class="{% if request.endpoint == 'blog' %}active{% endif %}">日志</a>
             </div>
         </div>
     </nav>
