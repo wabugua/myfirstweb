@@ -31,9 +31,10 @@ body {
 
 /* 文章列表容器 */
 .posts {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 20px;
+    padding-top: calc(var(--header-height) + 2rem); /* 添加上边距，避免被导航栏遮挡 */
 }
 
 /* 文章卡片样式 */
@@ -138,6 +139,54 @@ body {
 
     .posts {
         margin: 1rem auto;
+        padding: 0 12px;
+        padding-top: calc(48px + 1rem); /* 移动端导航栏高度调整 */
+    }
+
+    .post {
+        padding: 16px;
+        margin-bottom: 1.8rem;
+        border-radius: 12px;
+    }
+
+    .post-title {
+        font-size: 1.3rem;
+    }
+
+    .post-summary {
+        font-size: 1rem;
+    }
+}
+
+/* 文章详情页样式 */
+.post-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-top: calc(var(--header-height) + 2rem); /* 添加上边距，避免被导航栏遮挡 */
+}
+
+@media (max-width: 768px) {
+    .post-detail {
+        margin: 1rem auto;
+        padding: 0 12px;
+        padding-top: calc(48px + 1rem);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header {
+        padding: 2rem 1rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .posts {
+        margin: 1rem auto;
+        padding-top: calc(48px + 1rem); /* 移动端导航栏高度调整 */
     }
 
     .post {
