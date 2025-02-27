@@ -92,6 +92,10 @@ body {
     padding: 0.3rem 0;
 }
 
+.post-category {
+    margin-left: 0.8rem;
+}
+
 /* 金句样式 */
 .post-quote {
     border-left: 4px solid #3498db;

@@ -17,7 +17,7 @@
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.5rem;
     height: var(--header-height);
     display: flex;
     align-items: center;
@@ -53,7 +53,7 @@
 
 @media screen and (max-width: 768px) {
     .nav-container {
-        padding: 0 12px;
+        padding: 0 1.5rem;
         height: 48px;
     }
 

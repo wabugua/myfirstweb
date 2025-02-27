@@ -9,6 +9,9 @@
             <h1 class="post-title">{{ post.fields.标题 }}</h1>
             <div class="post-meta">
                 <span class="post-date">{{ post.fields.发布时间|datetime }}</span>
+                {% if post.fields.分类 %}
+                <span class="post-category">{{ post.fields.分类 }}</span>
+                {% endif %}
             </div>
         </div>
         <div class="post-content">

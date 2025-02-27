@@ -11,6 +11,9 @@
                     <h2 class="post-title"><a href="{{ url_for('post_detail', record_id=post.record_id) }}">{{ post.fields.标题 }}</a></h2>
                     <div class="post-meta">
                         <span class="post-date">{{ post.fields.发布时间|datetime }}</span>
+                        {% if post.fields.分类 %}
+                        <span class="post-category">{{ post.fields.分类 }}</span>
+                        {% endif %}
                     </div>
                     {% if post.fields.金句 %}
                         <div class="post-quote">
