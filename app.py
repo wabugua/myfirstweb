@@ -2,9 +2,13 @@ from flask import Flask, render_template
 from datetime import datetime
 import requests
 import logging
+from flask_caching import Cache
 from feishu_config import *
 
 app = Flask(__name__)
+
+# 配置缓存
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -70,6 +74,7 @@ def get_tenant_access_token():
         logger.error(f"获取tenant_access_token时发生错误：{str(e)}")
         return None
 
+@cache.cached(timeout=300, key_prefix='bitable_records')
 def get_bitable_records():
     token = get_tenant_access_token()
     if not token:
